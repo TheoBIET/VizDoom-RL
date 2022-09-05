@@ -3,21 +3,21 @@ from vizdoom import *
 import numpy as np
 import cv2
 # Usefull constants
-from utils.constants import SCENARIO_PATH, ACTIONS, TARGET_SHAPES, SKIP_FRAMES
+from utils.constants import DEFAULT_SCENARIO, N_ACTIONS, TARGET_SHAPES, SKIP_FRAMES
 # OpenAI Gym
 from gym import Env
 from gym.spaces import Discrete, Box
 
 class GymEnv(Env):
-    def __init__(self, render=False, hd=False):
+    def __init__(self, scenario_path=DEFAULT_SCENARIO, render=False, hd=False):
         # Inherit from Env
         super().__init__()
         
         # Game Initialization
         self.game = vizdoom.DoomGame()
-        self.game.load_config(SCENARIO_PATH)
+        self.game.load_config(scenario_path)
 
-        self.actions_length = len(ACTIONS)
+        self.actions_length = N_ACTIONS
         self.observation_space = Box(low=0, high=255, shape=TARGET_SHAPES, dtype=np.uint8)
         self.action_space = Discrete(self.actions_length)
         
@@ -30,7 +30,7 @@ class GymEnv(Env):
             self.game.set_window_visible(False)
             
         # High Definition configuration
-        if hd==True:
+        if hd == True:
             self.game.set_screen_resolution(ScreenResolution.RES_800X600)
             self.game.set_render_hud(True)
         

@@ -1,3 +1,5 @@
+import time
+
 # GymEnv Class
 from classes.GymEnv import GymEnv
 # Usefull constants
@@ -8,7 +10,7 @@ from stable_baselines3 import PPO
 from stable_baselines3.common.evaluation import evaluate_policy
 
 model = PPO.load(MODEL_PATH)
-env = GymEnv(render=True)
+env = GymEnv(render=True, hd=True)
 
 mean_reward, _ = evaluate_policy(model, 
                                  env, 

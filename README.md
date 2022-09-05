@@ -1,5 +1,53 @@
-# VizDoom AI with Reinforcement Learning
+<img src="./docs/doom_logo.webp" align="right"
+     alt="Luffy ONE PIECE" width="178" height="178">
 
-## Models Definition
-- doom_0509 - This Model was my first try model trained in the first level only
-<img src="./docs/doom_0509.gif" height="300" width="400">
+# 🇯🇵 vizDoom AI - Reinforcement Learning &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+vizDoom AI is a study project realized by me at the 3WA, to realize this model of artificial intelligence, I was greatly inspired by the videos of Nicholas Renotte (Youtubeur that I appreciate particularly). The goal of this script is to learn how to play all levels of Doom by himself and be the best he can be. 
+
+- This project is currently **under development.** 🏗️
+
+## 👨‍💻 Technologies
+
+<div align='center'>  
+    <img src="https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue" />
+	<img src="https://img.shields.io/badge/Numpy-777BB4?style=for-the-badge&logo=numpy&logoColor=white" />
+	<img src="https://img.shields.io/badge/OpenCV-27338e?style=for-the-badge&logo=OpenCV&logoColor=white" /><br>
+    <img src="https://img.shields.io/badge/OpenAI Gym-FFFFFF?style=for-the-badge&logo=OpenAI&logoColor=black" />
+    <img src="https://img.shields.io/badge/StableBaselines3-FF6F00?style=for-the-badge&logo=PyTorch&logoColor=white" />
+    <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=PyTorch&logoColor=white" />
+</div>
+
+## 🛠️ Prerequisites
+
+- [Python 3](https://www.python.org/downloads/)
+- [Pip](https://pip.pypa.io/en/stable/cli/pip_download/)
+- [Tensorflow]()
+- [VizDoom]()
+
+## 📦 Installation
+1 - Clone this repository.  
+2 - Install dependencies: `pip install -r requirements.txt`.  
+3 - Choose your model in the models folder and configure path in utils/constants
+4 - Run the model: `python play.py`.  
+5 - Enjoy! 💡
+
+## 🧠 Models Definitions
+
+### - `./models/basic_0509`
+
+__Description:__ `This model was my first try model trained with the basic configs, use it with basic.cfg only`
+__Number of training steps:__ `80.000`
+__Reward Mean:__ `85/101`
+<div align='center'>
+  <img src="./docs/basic_0509.gif" height="300" width="400" align="center">
+</div>
+
+### - `./models/defend_center_0509`
+
+__Description:__ `....`
+__Number of training steps:__ `xxxxxx`
+__Reward Mean:__ `xx/xxx`
+<div align='center'>
+  <img src="./docs/defend_center_0509.gif" height="300" width="400" align="center">
+</div>

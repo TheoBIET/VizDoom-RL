@@ -1,12 +1,10 @@
-# Files Path
-SCENARIO_PATH = 'scenarios/basic.cfg'
-CHECKPOINT_DIR = './train/train_basic'
-LOG_DIR = './logs/log_basic'
-MODEL_PATH = './models/doom_0509'
+# Game Scenarios Path
+DEFAULT_SCENARIO = 'scenarios/basic.cfg'
+BASIC_SCENARIO = 'scenarios/basic.cfg'
+DEFEND_CENTER_SCENARIO = 'scenarios/defend_the_center.cfg'
 
 # Constants variables
-ACTIONS = ['MOVE_LEFT', 'MOVE_RIGHT', 'ATTACK']
-SHAPES = (3, 240, 320)
+N_ACTIONS=3
 TARGET_SHAPES = (100, 160, 1)
 SKIP_FRAMES = 4
 SAVE_MODEL_FREQUENCY = 10000
