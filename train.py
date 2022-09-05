@@ -8,7 +8,7 @@ from utils.constants import SAVE_MODEL_FREQUENCY, MODEL_TYPE, CHECKPOINT_DIR, LO
 from stable_baselines3.common import env_checker
 from stable_baselines3 import PPO
 
-env = GymEnv()
+env = GymEnv(render=True)
 callback = TrainAndLoggingCallback(check_freq=SAVE_MODEL_FREQUENCY, save_path=CHECKPOINT_DIR)
 
 model = PPO(MODEL_TYPE,

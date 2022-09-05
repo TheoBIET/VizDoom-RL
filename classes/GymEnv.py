@@ -16,6 +16,8 @@ class GymEnv(Env):
         # Game Initialization
         self.game = vizdoom.DoomGame()
         self.game.load_config(SCENARIO_PATH)
+        self.game.set_screen_resolution(ScreenResolution.RES_800X600)
+        self.game.set_render_hud(True)
         
         self.actions_length = len(ACTIONS)
         self.observation_space = Box(low=0, high=255, shape=TARGET_SHAPES, dtype=np.uint8)
