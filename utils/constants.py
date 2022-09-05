@@ -1,15 +1,21 @@
 # Game Scenarios Path
 DEFAULT_SCENARIO = 'scenarios/basic.cfg'
-BASIC_SCENARIO = 'scenarios/basic.cfg'
-DEFEND_CENTER_SCENARIO = 'scenarios/defend_the_center.cfg'
 
 # Constants variables
-N_ACTIONS=3
+N_ACTIONS=3 # Default action number, don't need to change
 TARGET_SHAPES = (100, 160, 1)
 SKIP_FRAMES = 4
-SAVE_MODEL_FREQUENCY = 10000
+
+# AI Model Settings
+LEARNING_RATE = 0.00001
 MODEL_TYPE = 'CnnPolicy'
-LEARNING_RATE = 0.0001
-N_STEPS = 2048
-N_TIMESTEPS = 100000
+CLIP_RANGE=.1
+GAMMA=.95
+GAE_LAMBDA=.9
+N_STEPS = 8192
+N_TIMESTEPS = 400000
 N_EVAL_EPISODES = 20
+SAVE_MODEL_FREQUENCY = 10000
+HITCOUNT_DELTA_W=200
+DAMAGE_TAKEN_DELTA_W=10
+AMMO_DELTA_W=5

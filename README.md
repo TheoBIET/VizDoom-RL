@@ -1,7 +1,7 @@
 <img src="./docs/doom_logo.webp" align="right"
      alt="Luffy ONE PIECE" width="178" height="178">
 
-# 🇯🇵 vizDoom AI - Reinforcement Learning &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+# 😈 vizDoom AI - Gym Reinforcement Learning &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 vizDoom AI is a study project realized by me at the 3WA, to realize this model of artificial intelligence, I was greatly inspired by the videos of Nicholas Renotte (Youtubeur that I appreciate particularly). The goal of this script is to learn how to play all levels of Doom by himself and be the best he can be. 
 
@@ -36,18 +36,20 @@ vizDoom AI is a study project realized by me at the 3WA, to realize this model o
 
 ### - `./models/basic_0509`
 
-__Description:__ `This model was my first try model trained with the basic configs, use it with basic.cfg only`
-__Number of training steps:__ `80.000`
-__Reward Mean:__ `85/101`
+__Description:__ `This model was my first try model trained with the basic configs, use it with basic.cfg only`  
+__Training Time__: `2h55min`  
+__Number of training steps:__ `100.000`  
+__Reward Mean:__ `87.44/101`  
 <div align='center'>
   <img src="./docs/basic_0509.gif" height="300" width="400" align="center">
 </div>
 
 ### - `./models/defend_center_0509`
 
-__Description:__ `....`
-__Number of training steps:__ `xxxxxx`
-__Reward Mean:__ `xx/xxx`
+__Description:__ `This model was trained in the special level called "Defend Center", the agent got only 3 possibles move (turn_left, turn_right and shot). The Goal is to survive the maximum time in a round room with an infinite ennemies spawn.`  
+__Training Time__: `2h03min`  
+__Number of training steps:__ `100.000`  
+__Reward Mean:__ `15/∞`  
 <div align='center'>
   <img src="./docs/defend_center_0509.gif" height="300" width="400" align="center">
 </div>

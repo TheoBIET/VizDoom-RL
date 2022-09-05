@@ -3,15 +3,16 @@ from classes.GymEnv import GymEnv
 # Callback class
 from classes.Callback import TrainAndLoggingCallback
 # Usefull constants
-from utils.constants import BASIC_SCENARIO, SAVE_MODEL_FREQUENCY, MODEL_TYPE, LEARNING_RATE, N_STEPS, N_TIMESTEPS
+from utils.constants import DEFEND_CENTER_SCENARIO, SAVE_MODEL_FREQUENCY, MODEL_TYPE, LEARNING_RATE, N_STEPS, N_TIMESTEPS
 # Stable Baselines
 from stable_baselines3.common import env_checker
 from stable_baselines3 import PPO
 
-CHECKPOINT_DIR = './train/train_basic'
-LOG_DIR = './logs/log_basic'
+SCENARIO_PATH = 'scenarios/defend_the_center.cfg'
+CHECKPOINT_DIR = './train/defend_the_center'
+LOG_DIR = './logs/defend_the_center'
 
-env = GymEnv(scenario_path=BASIC_SCENARIO)
+env = GymEnv(scenario_path=DEFEND_CENTER_SCENARIO)
 callback = TrainAndLoggingCallback(check_freq=SAVE_MODEL_FREQUENCY, save_path=CHECKPOINT_DIR)
 
 model = PPO(MODEL_TYPE,
