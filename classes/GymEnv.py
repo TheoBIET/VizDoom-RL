@@ -1,31 +1,21 @@
 # Import dependencies
 from vizdoom import *
+import numpy as np
+import cv2
+# Usefull constants
+from utils.constants import SCENARIO_PATH, ACTIONS, TARGET_SHAPES, SKIP_FRAMES
 # OpenAI Gym
 from gym import Env
 from gym.spaces import Discrete, Box
 
-import cv2
-import numpy as np
-import random
-import time
-
-# Constants variables
-SCENARIO = 'github/ViZDoom/scenarios/basic.cfg'
-ACTIONS = ['MOVE_LEFT', 'MOVE_RIGHT', 'ATTACK']
-SHAPES = (3, 240, 320)
-TARGET_SHAPES = (100, 160, 1)
-EPISODES_NUMBER = 1
-SKIP_FRAMES = 4
-
 class GymEnv(Env):
-
     def __init__(self, render=False):
         # Inherit from Env
         super().__init__()
         
         # Game Initialization
         self.game = vizdoom.DoomGame()
-        self.game.load_config(SCENARIO)
+        self.game.load_config(SCENARIO_PATH)
         
         self.actions_length = len(ACTIONS)
         self.observation_space = Box(low=0, high=255, shape=TARGET_SHAPES, dtype=np.uint8)
@@ -56,12 +46,14 @@ class GymEnv(Env):
         if state: 
             screen = state.screen_buffer # Screenshot
             screen = self.grayscale(screen)
-            infos = state.game_variables # Games variables
+            ammo = state.game_variables[0] # Ammo Left
+            info = ammo
         else:
             screen = np.zeros(self.observation_space.shape) # List of 0 with shape of the observation_space
-            infos = list()
+            info = 0
         
-        return screen, reward, is_done, infos
+        info = {"info":info}
+        return screen, reward, is_done, info
     
     # Reset the game
     def reset(self):
