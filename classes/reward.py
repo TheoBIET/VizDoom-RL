@@ -1,15 +1,21 @@
-# Import dependencies
-from vizdoom import *
 import numpy as np
 import cv2
-# Usefull constants
-from utils.constants import DEFAULT_SCENARIO, N_ACTIONS, TARGET_SHAPES, SKIP_FRAMES, HITCOUNT_DELTA_W, DAMAGE_TAKEN_DELTA_W, AMMO_DELTA_W
+# VizDoom
+from vizdoom import *
 # OpenAI Gym
 from gym import Env
 from gym.spaces import Discrete, Box
+from utils.constants.constants import *
 
 class GymEnv(Env):
-    def __init__(self, scenario_path=DEFAULT_SCENARIO, n_actions=N_ACTIONS, render=False, hd=False):
+    def __init__(self, 
+                 scenario_path, 
+                 n_actions=N_ACTIONS, 
+                 damage_taken_delta_w=DAMAGE_TAKEN_DELTA_W,
+                 hitcount_delta_w=HITCOUNT_DELTA_W,
+                 ammo_delta_w=AMMO_DELTA_W,
+                 render=False, 
+                 hd=False):
         # Inherit from Env
         super().__init__()
         
@@ -18,7 +24,7 @@ class GymEnv(Env):
         self.game.load_config(scenario_path)
         
         self.n_actions = n_actions
-        self.observation_space = Box(low=0, high=255, shape=TARGET_SHAPES, dtype=np.uint8)
+        self.observation_space = Box(low=LOW, high=HIGH, shape=TARGET_SHAPES, dtype=np.uint8)
         self.action_space = Discrete(n_actions)
         
         # Create a vector list represent the actions.
@@ -28,6 +34,11 @@ class GymEnv(Env):
         self.damage_taken = 0
         self.hitcount = 0
         self.ammo = 52
+        
+        # Reward Shaping Weight
+        self.damage_taken_delta_w = damage_taken_delta_w
+        self.hitcount_delta_w = hitcount_delta_w
+        self.ammo_delta_w = ammo_delta_w
         
         # Render frame configuration
         if render == False:
@@ -45,7 +56,7 @@ class GymEnv(Env):
         assert action >= 0 & action <= self.n_actions
         
         # Make an action, then wait {{SKIP_FRAMES}} frames
-        game_reward = self.game.make_action(self.actions[action], SKIP_FRAMES)
+        game_reward = self.game.make_action(self.actions[action])
         reward = game_reward
         
         # Get all the stuff we need to return
@@ -77,7 +88,10 @@ class GymEnv(Env):
             ammo_delta = ammo - self.ammo
             self.ammo = ammo
             
-            reward = game_reward + damage_taken_delta*DAMAGE_TAKEN_DELTA_W + hitcount_delta*HITCOUNT_DELTA_W + ammo_delta*AMMO_DELTA_W
+            reward = (game_reward + 
+                      damage_taken_delta*self.damage_taken_delta_w + 
+                      hitcount_delta*self.hitcount_delta_w + 
+                      ammo_delta*self.ammo_delta_w)
             
             info = {
                 "ammo": ammo,

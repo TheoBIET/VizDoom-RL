@@ -13,6 +13,7 @@ class Play():
         env = self.get_env()
         model = PPO.load(self.model_path)
         mean_reward, _ = evaluate_policy(model, env, n_eval_episodes=N_EVAL_EPISODES)
+        print(mean_reward)
         return mean_reward
         
     def get_env(self):

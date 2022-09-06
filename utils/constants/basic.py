@@ -1,6 +1,6 @@
 SCENARIO_PATH = 'utils/scenarios/basic.cfg' # Game Scenario Path
-LOG_DIR = 'utils/logs/basic' # Tensorboard Log Directory
-CHECKPOINT_DIR = 'utils/train/basic' # Checkpoint Directory
+LOG_DIR = 'logs/basic' # Tensorboard Log Directory
+CHECKPOINT_DIR = 'train/basic' # Checkpoint Directory
 MODEL_PATH = 'utils/models/basic_0509' # Model Path
 MODEL_NAME = 'base' # Model Name
 N_ACTIONS = 3

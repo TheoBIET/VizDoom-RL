@@ -44,7 +44,7 @@ class GymEnv(Env):
         assert action >= 0 & action <= self.n_actions
         
         # Make an action, then wait {{SKIP_FRAMES}} frames
-        reward = self.game.make_action(self.actions[action], SKIP_FRAMES)
+        reward = self.game.make_action(self.actions[action])
         
         # Get all the stuff we need to return
         state = self.game.get_state()

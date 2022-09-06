@@ -2,7 +2,6 @@
 MODEL_TYPE = 'CnnPolicy'
 N_ACTIONS = 3 # # Number of actions in the scenario
 TARGET_SHAPES = (100, 160, 1) # Target shape for the CNN
-SKIP_FRAMES = 4 # Number of frames to skip
 SAVE_MODEL_FREQUENCY = 10000 # Frequency to save the model
 N_EVAL_EPISODES = 20 # Number of episodes to evaluate the model
 VERSBOSE = 2 # Verbose level for the model
@@ -18,6 +17,11 @@ GAMMA = .99
 GAE_LAMBDA = .95
 N_STEPS = 2048
 N_TIMESTEPS = 100000
+
+# Reward Shaping weights
+HITCOUNT_DELTA_W=200
+DAMAGE_TAKEN_DELTA_W=10
+AMMO_DELTA_W=5
 
 # String constants for Train Class
 SCENARIO_PATH = 'SCENARIO_PATH'

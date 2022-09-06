@@ -1,5 +1,5 @@
-<img src="./docs/doom_logo.webp" align="right"
-     alt="Luffy ONE PIECE" width="178" height="178">
+<img src="./utils/docs/doom_logo.webp" align="right"
+     alt="Logo Doom" width="178" height="178">
 
 # 😈 vizDoom AI - Gym Reinforcement Learning &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
