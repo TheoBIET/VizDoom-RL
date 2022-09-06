@@ -14,7 +14,7 @@ class GymEnv(Env):
         super().__init__()
         
         # Game Initialization
-        self.game = vizdoom.DoomGame()
+        self.game = DoomGame()
         self.game.load_config(scenario_path)
         
         self.n_actions = n_actions

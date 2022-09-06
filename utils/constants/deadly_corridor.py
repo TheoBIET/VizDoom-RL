@@ -3,6 +3,7 @@ LOG_DIR = 'utils/logs/deadly_corridor' # Tensorboard Log Directory
 CHECKPOINT_DIR = 'utils/train/deadly_corridor' # Checkpoint Directory
 MODEL_PATH = None # Model Path
 MODEL_NAME = 'reward' # Model Name
+N_ACTIONS = 7
 IS_REWARD_SHAPED = True # Is the reward shaped?
 IS_CURRICULUM = True # Is the curriculum learning enabled?
 CURRICULUM_PATHS = [

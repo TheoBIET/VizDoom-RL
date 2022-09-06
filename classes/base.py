@@ -17,7 +17,7 @@ class GymEnv(Env):
         super().__init__()
         
         # Game Initialization
-        self.game = vizdoom.DoomGame()
+        self.game = DoomGame()
         self.game.load_config(scenario_path)
 
         self.n_actions = N_ACTIONS
@@ -81,3 +81,6 @@ class GymEnv(Env):
     # Close the current game session
     def close(self):
         self.game.close()
+        
+    def render(self):
+        pass

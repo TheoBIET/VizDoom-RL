@@ -8,3 +8,4 @@ torchaudio
 stable-baselines3[extra]
 typer
 rich
+importlib

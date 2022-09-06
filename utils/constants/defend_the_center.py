@@ -3,6 +3,7 @@ LOG_DIR = 'utils/logs/defend_the_center' # Tensorboard Log Directory
 CHECKPOINT_DIR = 'utils/train/defend_the_center' # Checkpoint Directory
 MODEL_PATH = 'utils/models/defend_the_center_0509' # Model Path
 MODEL_NAME = 'base' # Model Name
+N_ACTIONS = 3
 IS_REWARD_SHAPED = False # Is the reward shaped?
 IS_CURRICULUM = False # Is the curriculum learning enabled?
 

@@ -3,6 +3,7 @@ LOG_DIR = 'utils/logs/basic' # Tensorboard Log Directory
 CHECKPOINT_DIR = 'utils/train/basic' # Checkpoint Directory
 MODEL_PATH = 'utils/models/basic_0509' # Model Path
 MODEL_NAME = 'base' # Model Name
+N_ACTIONS = 3
 IS_REWARD_SHAPED = False # Is the reward shaped?
 IS_CURRICULUM = False # Is the curriculum learning enabled?
 

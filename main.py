@@ -10,7 +10,7 @@ from utils.play import Play
 def request_level():
     # Show all levels and ask for the one to train
     levels = '\n'.join([f'{i+1}. {option}' for i, option in enumerate(GAME_LEVELS)])
-    print(TRAIN_SELECTION.format(string))
+    print(TRAIN_SELECTION.format(levels))
     choice = typer.prompt(SELECT_AN_OPTION, default=1)
     print(choice)
     

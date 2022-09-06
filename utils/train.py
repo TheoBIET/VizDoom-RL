@@ -9,7 +9,7 @@ class Train():
         self.level_name = level_name     
         self.load_constants()
         
-    def train(self):
+    def start(self):
         env = self.get_env()
         callback = TrainAndLoggingCallback(check_freq=SAVE_MODEL_FREQUENCY, save_path=self.checkpoint_dir)
         
@@ -30,12 +30,11 @@ class Train():
         
     def get_env(self):
         module = importlib.import_module(f"classes.{self.model_name}")
-        env = module.GymEnv(self.scenario_path,
-                     n_actions=self.n_actions,
-                    )
+        env = module.GymEnv(self.scenario_path, n_actions=self.n_actions)
+        return env
         
     def load_constants(self):
-        module = importlib.import_module(f"levels.{self.level_name}")
+        module = importlib.import_module(f"utils.constants.{self.level_name}")
         self.model_name = module.MODEL_NAME
         self.scenario_path = module.SCENARIO_PATH
         self.checkpoint_dir = module.CHECKPOINT_DIR
