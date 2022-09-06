@@ -1,3 +1,4 @@
+import time
 import numpy as np
 import cv2
 # VizDoom
@@ -14,6 +15,8 @@ class GymEnv(Env):
                  damage_taken_delta_w=DAMAGE_TAKEN_DELTA_W,
                  hitcount_delta_w=HITCOUNT_DELTA_W,
                  ammo_delta_w=AMMO_DELTA_W,
+                 movement_w=MOVEMENT_W,
+                 logging=False,
                  render=False, 
                  hd=False):
         # Inherit from Env
@@ -23,6 +26,7 @@ class GymEnv(Env):
         self.game = DoomGame()
         self.game.load_config(scenario_path)
         
+        self.logging = logging
         self.n_actions = n_actions
         self.observation_space = Box(low=LOW, high=HIGH, shape=TARGET_SHAPES, dtype=np.uint8)
         self.action_space = Discrete(n_actions)
@@ -36,6 +40,7 @@ class GymEnv(Env):
         self.ammo = 52
         
         # Reward Shaping Weight
+        self.movement_w = movement_w
         self.damage_taken_delta_w = damage_taken_delta_w
         self.hitcount_delta_w = hitcount_delta_w
         self.ammo_delta_w = ammo_delta_w
@@ -55,8 +60,12 @@ class GymEnv(Env):
         # Check if the action is legit
         assert action >= 0 & action <= self.n_actions
         
-        # Make an action, then wait {{SKIP_FRAMES}} frames
+        # Make an action, then wait 10 frames for loggin
         game_reward = self.game.make_action(self.actions[action])
+
+        if self.logging:
+            time.sleep(1)
+        
         reward = game_reward
         
         # Get all the stuff we need to return
@@ -88,10 +97,27 @@ class GymEnv(Env):
             ammo_delta = ammo - self.ammo
             self.ammo = ammo
             
-            reward = (game_reward + 
-                      damage_taken_delta*self.damage_taken_delta_w + 
-                      hitcount_delta*self.hitcount_delta_w + 
-                      ammo_delta*self.ammo_delta_w)
+            movement_reward = game_reward * self.movement_w
+            damage_reward = damage_taken_delta * self.damage_taken_delta_w
+            hitcount_reward = hitcount_delta * self.hitcount_delta_w
+            ammo_reward = ammo_delta * self.ammo_delta_w
+            
+            frame_total_reward = movement_reward + damage_reward + hitcount_reward + ammo_reward
+            
+            if self.logging:
+                print('##########################')
+                print(f'Action Number: {action}')
+                print(f'Health {health}')
+                print(f'Ammo Left: {ammo}')
+                print(f'Damage Taken: {damage_taken}')
+                print(f'Hitcount: {hitcount}')
+                print(f'Movement Reward: {movement_reward}')
+                print(f'Damage Taken Reward: {damage_reward}')
+                print(f'Hitcount Taken: {hitcount_reward}')
+                print(f'Damage Taken: {damage_reward}')
+                print(f'Ammo Reward: {ammo_reward}')
+                print(f'Total Reward: {frame_total_reward}')
+                print('##########################')
             
             info = {
                 "ammo": ammo,
@@ -99,6 +125,7 @@ class GymEnv(Env):
                 "damage_taken": damage_taken,
                 "hitcount": hitcount
             }
+            
         else:
             screen = np.zeros(self.observation_space.shape) # List of 0 with shape of the observation_space
             info = dict()

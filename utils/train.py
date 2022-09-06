@@ -11,7 +11,11 @@ class Train():
         self.level_name = level_name     
         self.load_constants()
         
-    def start(self):
+    def start(self, difficulty=0):
+        # Set the choosen difficulty for Curriculum Learning
+        if self.is_curriculum:
+            self.difficulty = difficulty
+        
         env = self.get_env()
         callback = TrainAndLoggingCallback(check_freq=SAVE_MODEL_FREQUENCY, save_path=self.checkpoint_dir)
         
@@ -36,9 +40,21 @@ class Train():
         model.learn(total_timesteps=self.n_timesteps, callback=callback)
         
     def get_env(self):
+        # Get the module contain the corresponding Class
         module = importlib.import_module(f"classes.{self.model_name}")
-        env = module.GymEnv(self.scenario_path, n_actions=self.n_actions)
+        
+        if self.is_curriculum:
+            env = module.GymEnv(self.curriculum_paths[self.difficulty])
+        else:
+            env = module.GymEnv(self.scenario_path, n_actions=self.n_actions)
+            
         return env
+    
+    def get_difficuties(self):
+        # Return is_curriculum who is a boolean and the number of difficulties
+        n_difficulties = len(self.curriculum_paths) if self.curriculum_paths else 0
+        data = (self.is_curriculum, len(self.curriculum_paths))
+        return data
         
     def load_constants(self):
         module = importlib.import_module(f"utils.constants.{self.level_name}")
@@ -53,3 +69,7 @@ class Train():
         self.n_steps = module.N_STEPS
         self.n_actions = module.N_ACTIONS
         self.n_timesteps = module.N_TIMESTEPS
+        self.is_curriculum = module.IS_CURRICULUM
+        
+        if self.is_curriculum:
+            self.curriculum_paths = module.CURRICULUM_PATHS

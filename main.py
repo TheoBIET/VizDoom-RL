@@ -30,7 +30,20 @@ def main():
         Play(level_name).start()
     elif choice == TRAIN:
         level_name = GAME_LEVELS[ request_level() - 1]
-        Train(level_name).start()
+        game = Train(level_name)
+        is_curriculum, n_difficulties = game.get_difficuties()
+        
+        if not is_curriculum:
+            return Train(level_name).start()
+        
+        # If a difficulty is needed, request them to the user
+        print(SELECT_A_DIFFICULTY.format(n_difficulties))
+        difficulty_choice = typer.prompt(SELECT_AN_OPTION, default=1)
+        
+        if difficulty_choice > n_difficulties:
+            raise ValueError(INVALID_CHOICE)
+        
+        Train(level_name).start(difficulty=difficulty_choice)
     
     else:
         raise ValueError(INVALID_CHOICE)
