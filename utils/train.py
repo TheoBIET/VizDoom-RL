@@ -1,8 +1,10 @@
+import os
 import importlib
 from utils.constants.constants import *
 from classes.callback import TrainAndLoggingCallback # Callback class
 from stable_baselines3.common import env_checker
 from stable_baselines3 import PPO
+from tensorboard import program
 
 class Train():
     def __init__(self, level_name):
@@ -25,7 +27,12 @@ class Train():
                     gamma=self.gamma,
                     gae_lambda=self.gae_lambda,
                     n_steps=self.n_steps)
-    
+
+        tb = program.TensorBoard()
+        path = os.listdir(self.log_dir)[-1]        
+        tb.configure(argv=[None, '--logdir', path])
+        url = tb.launch()
+        print(f"Tensorflow listening on {url}")
         model.learn(total_timesteps=self.n_timesteps, callback=callback)
         
     def get_env(self):
@@ -44,4 +51,5 @@ class Train():
         self.gamma = module.GAMMA
         self.gae_lambda = module.GAE_LAMBDA
         self.n_steps = module.N_STEPS
+        self.n_actions = module.N_ACTIONS
         self.n_timesteps = module.N_TIMESTEPS
