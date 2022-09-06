@@ -10,12 +10,12 @@ vizDoom AI is a study project realized by me at the 3WA, to realize this model o
 ## 👨‍💻 Technologies
 
 <div align='center'>  
-    <img src="https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue" />
+  <img src="https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue" />
 	<img src="https://img.shields.io/badge/Numpy-777BB4?style=for-the-badge&logo=numpy&logoColor=white" />
 	<img src="https://img.shields.io/badge/OpenCV-27338e?style=for-the-badge&logo=OpenCV&logoColor=white" /><br>
-    <img src="https://img.shields.io/badge/OpenAI Gym-FFFFFF?style=for-the-badge&logo=OpenAI&logoColor=black" />
-    <img src="https://img.shields.io/badge/StableBaselines3-FF6F00?style=for-the-badge&logo=PyTorch&logoColor=white" />
-    <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=PyTorch&logoColor=white" />
+  <img src="https://img.shields.io/badge/OpenAI Gym-FFFFFF?style=for-the-badge&logo=OpenAI&logoColor=black" />
+  <img src="https://img.shields.io/badge/StableBaselines3-FF6F00?style=for-the-badge&logo=PyTorch&logoColor=white" />
+  <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=PyTorch&logoColor=white" />
 </div>
 
 ## 🛠️ Prerequisites
@@ -28,7 +28,7 @@ vizDoom AI is a study project realized by me at the 3WA, to realize this model o
 ## 📦 Installation
 1 - Clone this repository.  
 2 - Install dependencies: `pip install -r requirements.txt`.  
-3 - Choose your model in the models folder and configure path in utils/constants
+3 - Choose your model in the models folder and configure path in utils/constants  
 4 - Run the model: `python play.py`.  
 5 - Enjoy! 💡
 
@@ -41,7 +41,7 @@ __Training Time__: `2h55min`
 __Number of training steps:__ `100.000`  
 __Reward Mean:__ `87.44/101`  
 <div align='center'>
-  <img src="./docs/basic_0509.gif" height="300" width="400" align="center">
+  <img src="./utils/docs/basic_0509.gif" height="300" width="400" align="center">
 </div>
 
 ### - `./models/defend_center_0509`
@@ -51,5 +51,5 @@ __Training Time__: `2h03min`
 __Number of training steps:__ `100.000`  
 __Reward Mean:__ `15/∞`  
 <div align='center'>
-  <img src="./docs/defend_center_0509.gif" height="300" width="400" align="center">
+  <img src="./utils/docs/defend_center_0509.gif" height="300" width="400" align="center">
 </div>
