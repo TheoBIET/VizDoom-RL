@@ -1,7 +1,7 @@
 SCENARIO_PATH = 'utils/scenarios/deadly_corridor_s2.cfg' # Game Scenario Path
 LOG_DIR = 'logs/deadly_corridor' # Tensorboard Log Directory
 CHECKPOINT_DIR = 'train/deadly_corridor' # Checkpoint Directory
-MODEL_PATH = 'utils/models/deadly_corridor_s1_0609' # Model Path
+MODEL_PATH = 'train\deadly_corridor\doom_model_130000.zip' # Model Path
 MODEL_NAME = 'reward' # Model Name
 N_ACTIONS = 7
 IS_REWARD_SHAPED = True # Is the reward shaped?
@@ -15,8 +15,8 @@ CURRICULUM_PATHS = [
 ]
 
 # PPO Model Hyperparameters
-LEARNING_RATE = 0.00001
-CLIP_RANGE = .1
+LEARNING_RATE = 0.0003
+CLIP_RANGE = .15
 GAMMA = .9
 GAE_LAMBDA = .99
 N_STEPS = 8192

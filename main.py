@@ -4,8 +4,6 @@ from rich.table import Table
 
 from utils.constants.cli import *
 from utils.constants.constants import *
-from utils.train import Train
-from utils.play import Play
 
 def request_level():
     # Show all levels and ask for the one to train
@@ -26,9 +24,11 @@ def main():
     print(choice)
 
     if choice == PLAY:
+        from utils.play import Play
         level_name = GAME_LEVELS[ request_level() - 1]
         Play(level_name).start()
     elif choice == TRAIN:
+        from utils.train import Train
         level_name = GAME_LEVELS[ request_level() - 1]
         game = Train(level_name)
         is_curriculum, n_difficulties = game.get_difficuties()

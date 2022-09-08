@@ -4,11 +4,11 @@ from utils.constants.constants import *
 from classes.callback import TrainAndLoggingCallback # Callback class
 from stable_baselines3.common import env_checker
 from stable_baselines3 import PPO
-from tensorboard import program
 
 class Train():
     def __init__(self, level_name):
         self.level_name = level_name     
+        self.curriculum_paths = []
         self.load_constants()
         
     def start(self, difficulty=0):
@@ -32,11 +32,11 @@ class Train():
                     gae_lambda=self.gae_lambda,
                     n_steps=self.n_steps)
 
-        tb = program.TensorBoard()
-        path = os.listdir(self.log_dir)[-1]        
-        tb.configure(argv=[None, '--logdir', path])
-        url = tb.launch()
-        print(f"Tensorflow listening on {url}")
+        # tb = program.TensorBoard()
+        # path = os.listdir(self.log_dir)[-1]        
+        # tb.configure(argv=[None, '--logdir', path])
+        # url = tb.launch()
+        # print(f"Tensorflow listening on {url}")
         model.learn(total_timesteps=self.n_timesteps, callback=callback)
         
     def get_env(self):
@@ -52,7 +52,7 @@ class Train():
     
     def get_difficuties(self):
         # Return is_curriculum who is a boolean and the number of difficulties
-        n_difficulties = len(self.curriculum_paths) if self.curriculum_paths else 0
+        n_difficulties = len(self.curriculum_paths)
         data = (self.is_curriculum, len(self.curriculum_paths))
         return data
         

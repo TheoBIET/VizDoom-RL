@@ -64,7 +64,7 @@ class GymEnv(Env):
         game_reward = self.game.make_action(self.actions[action])
 
         if self.logging:
-            time.sleep(1)
+            time.sleep(0.3)
         
         reward = game_reward
         
@@ -102,7 +102,7 @@ class GymEnv(Env):
             hitcount_reward = hitcount_delta * self.hitcount_delta_w
             ammo_reward = ammo_delta * self.ammo_delta_w
             
-            frame_total_reward = movement_reward + damage_reward + hitcount_reward + ammo_reward
+            reward = movement_reward + damage_reward + hitcount_reward + ammo_reward
             
             if self.logging:
                 print('##########################')
@@ -113,10 +113,9 @@ class GymEnv(Env):
                 print(f'Hitcount: {hitcount}')
                 print(f'Movement Reward: {movement_reward}')
                 print(f'Damage Taken Reward: {damage_reward}')
-                print(f'Hitcount Taken: {hitcount_reward}')
-                print(f'Damage Taken: {damage_reward}')
+                print(f'Hitcount Reward: {hitcount_reward}')
                 print(f'Ammo Reward: {ammo_reward}')
-                print(f'Total Reward: {frame_total_reward}')
+                print(f'Total Reward: {reward}')
                 print('##########################')
             
             info = {

@@ -31,5 +31,11 @@ IS_REWARD_SHAPED = 'IS_REWARD_SHAPED'
 GAME_LEVELS = [
     'basic',
     'defend_the_center',
-    'deadly_corridor'
+    'deadly_corridor',
+    'defend_the_line',
+    'predict_position',
+    'my_way_home',
+    'take_cover',
+    'health_gathering',
+    'health_gathering_supreme'
 ]
